@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 app.register_blueprint(app_views, url_prefix="/api/v1")
 
+
 @app.teardown_appcontext
 def close_session(self):
     """ close_session
@@ -16,4 +17,4 @@ def close_session(self):
     storage.close()
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port='5000', threaded=True)
