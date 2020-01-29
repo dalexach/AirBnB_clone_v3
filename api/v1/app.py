@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Module v1 """
 from flask import Flask, jsonify
 from models import storage
@@ -22,7 +23,7 @@ def close_session(self):
 def error_404(self):
     """ handle 404 error
     """
-    return jsonify({"error": "Not found"})
+    return jsonify({"error": "Not found"}), 404
 
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST')
