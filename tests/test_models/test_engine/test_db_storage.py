@@ -87,6 +87,7 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
+
 class TestDBStorage(unittest.TestCase):
     """
         Test the DB Storage class
@@ -94,7 +95,6 @@ class TestDBStorage(unittest.TestCase):
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "testing not in dbstorage")
-
     def test_get(self):
         """
             Test for the function get that returns an specific object
@@ -103,13 +103,12 @@ class TestDBStorage(unittest.TestCase):
         state.save()
         user = User(email="893@holbertonschool.com", password='passwd')
         user.save()
-        self.assertIs(sate, models.storage.get('State', state.id)
-        self.assertIs(None, models.storage.get('State', 'hello')
-        self.assertIs(user, models.storage.get('User', user.id)
+        self.assertIs(sate, models.storage.get('State', state.id))
+        self.assertIs(None, models.storage.get('State', 'hello'))
+        self.assertIs(user, models.storage.get('User', user.id))
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "testing not in dbstorage")
-
     def test_count(self):
         """
             Test for the function count that returns the number of objects
