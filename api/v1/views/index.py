@@ -19,8 +19,10 @@ def stats():
         return the number of each object
     """
     result = {}
-    objects = ['Amenity', 'City', 'Place', 'Review', 'State', 'User']
-    for i in objects:
-        result[i] = storage.count(i)
+    objects = {'amenities': 'Amenity', 'cities': 'City',
+               'places': 'Place', 'reviews': 'Review',
+               'states': 'State', 'users': 'User'}
+    for key, value in objects.items():
+        result[key] = storage.count(value)
 
     return jsonify(result)
