@@ -5,6 +5,7 @@ Contains the TestDBStorageDocs and TestDBStorage classes
 
 from datetime import datetime
 import inspect
+import json
 import models
 from models.engine import db_storage
 from models.amenity import Amenity
@@ -14,7 +15,6 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
-import json
 import os
 import pep8
 import unittest
@@ -86,3 +86,39 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+class TestDBStorage(unittest.TestCase):
+    """
+        Test the DB Storage class
+    """
+
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
+                     "testing not in dbstorage")
+
+    def test_get(self):
+        """
+            Test for the function get that returns an specific object
+        """
+        state = State(name='Florida')
+        state.save()
+        user = User(email="893@holbertonschool.com", password='passwd')
+        user.save()
+        self.assertIs(sate, models.storage.get('State', state.id)
+        self.assertIs(None, models.storage.get('State', 'hello')
+        self.assertIs(user, models.storage.get('User', user.id)
+
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
+                     "testing not in dbstorage")
+
+    def test_count(self):
+        """
+            Test for the function count that returns the number of objects
+        """
+        initial_objects = models.storage.count()
+        self.assertEqual(models.storage.count('Hello'), 0)
+        state = State(name='California')
+        state.save()
+        user = User(email="905@holbertonschool.com", password='passwd')
+        user.save()
+        self.assertEqual(models.storage.count('State'), initial_objects + 1)
+        self.assertEqual(models.storage.count(), initial_objects + 2)
