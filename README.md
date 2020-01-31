@@ -32,7 +32,7 @@ This is the final part of our project:
 
 ### Installation
 ```
-https://github.com/dario-castano/AirBnB_clone_v2.git
+https://github.com/dalexach/AirBnB_clone_v3.git
 ```
 
 ---
