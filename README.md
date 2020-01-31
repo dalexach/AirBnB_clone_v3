@@ -26,7 +26,7 @@ In the next few months, we at [Holberton School](https://www.holbertonschool.com
 In this repository we face the fourth part: RESTful API. In this part we have to build the Rest API to induce performance, scalability, simplicity, modifiability, visibility, portability, and reliability.
 
 This is the final part of our project:
-<p><img src="https://s3.amazonaws.com/intranet-projects-files/concepts/74/hbnb_step2.png" width="629" height="335"></p>
+<p><img src="https://s3.amazonaws.com/intranet-projects-files/concepts/74/hbnb_step4.png" width="629" height="335"></p>
 
 ---
 
