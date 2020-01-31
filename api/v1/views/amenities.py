@@ -15,7 +15,7 @@ def all_amenities():
     if request.method == 'GET':
         return jsonify([i.to_dict() for i in storage.all('Amenity').values()])
     elif request.method == 'POST':
-        if request.content_type != 'application/json':
+        if request.get_json() is None:
             abort(400, {'message': 'Not a JSON'})
         if "name" not in request.get_json().keys():
             abort(400, {'message': 'Missing name'})
@@ -45,7 +45,7 @@ def aminities_with_id(amenity_id):
         storage.save()
         return jsonify({})
     elif request.method == 'PUT':
-        if request.content_type != 'application/json':
+        if request.get_json() is None:
             abort(400, {'message': 'Not a JSON'})
 
         amenity = storage.get('Amenity', amenity_id)

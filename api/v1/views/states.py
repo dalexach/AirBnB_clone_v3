@@ -15,7 +15,7 @@ def all_states():
     if request.method == 'GET':
         return jsonify([i.to_dict() for i in storage.all('State').values()])
     elif request.method == 'POST':
-        if request.content_type != 'application/json':
+        if request.get_json() is None:
             abort(400, {'message': 'Not a JSON'})
         if "name" not in request.get_json().keys():
             abort(400, {'message': 'Missing name'})
@@ -45,7 +45,7 @@ def states_with_id(state_id):
         storage.save()
         return jsonify({})
     elif request.method == 'PUT':
-        if request.content_type != 'application/json':
+        if request.get_json() is None:
             abort(400, {'message': 'Not a JSON'})
 
         state = storage.get('State', state_id)

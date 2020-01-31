@@ -22,7 +22,7 @@ def all_places(city_id):
         return jsonify([i.to_dict() for i in
                        storage.get('City', city_id).places])
     elif request.method == 'POST':
-        if request.content_type != 'application/json':
+        if request.get_json() is None:
             abort(400, {'message': 'Not a JSON'})
         if "name" not in request.get_json().keys():
             abort(400, {'message': 'Missing name'})
@@ -54,7 +54,7 @@ def places_with_id(place_id):
         storage.save()
         return jsonify({})
     elif request.method == 'PUT':
-        if request.content_type != 'application/json':
+        if request.get_json() is None:
             abort(400, {'message': 'Not a JSON'})
 
         place = storage.get('Place', place_id)
