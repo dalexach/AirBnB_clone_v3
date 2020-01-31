@@ -103,7 +103,7 @@ class TestDBStorage(unittest.TestCase):
         state.save()
         user = User(email="893@holbertonschool.com", password='passwd')
         user.save()
-        self.assertIs(sate, models.storage.get('State', state.id))
+        self.assertIs(state, models.storage.get('State', state.id))
         self.assertIs(None, models.storage.get('State', 'hello'))
         self.assertIs(user, models.storage.get('User', user.id))
 
