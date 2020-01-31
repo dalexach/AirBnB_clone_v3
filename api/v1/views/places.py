@@ -23,9 +23,9 @@ def all_places(city_id):
                        storage.get('City', city_id).places])
     elif request.method == 'POST':
         if request.get_json() is None:
-            abort(400, {'message': 'Not a JSON'})
+            abort(400, 'Not a JSON')
         if "name" not in request.get_json().keys():
-            abort(400, {'message': 'Missing name'})
+            abort(400, 'Missing name')
         final_dict = request.get_json()
         final_dict.update({'city_id': city_id})
         instance = Place(**final_dict)
@@ -55,7 +55,7 @@ def places_with_id(place_id):
         return jsonify({})
     elif request.method == 'PUT':
         if request.get_json() is None:
-            abort(400, {'message': 'Not a JSON'})
+            abort(400, 'Not a JSON')
 
         place = storage.get('Place', place_id)
         for key, value in request.get_json().items():

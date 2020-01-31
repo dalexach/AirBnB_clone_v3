@@ -23,9 +23,9 @@ def all_reviews(place_id):
                        storage.get('Place', place_id).reviews])
     elif request.method == 'POST':
         if request.get_json() is None:
-            abort(400, {'message': 'Not a JSON'})
+            abort(400, 'Not a JSON')
         if "name" not in request.get_json().keys():
-            abort(400, {'message': 'Missing name'})
+            abort(400, 'Missing name')
         final_dict = request.get_json()
         final_dict.update({'place_id': place_id})
         instance = Review(**final_dict)
@@ -55,7 +55,7 @@ def reviews_with_id(review_id):
         return jsonify({})
     elif request.method == 'PUT':
         if request.get_json() is None:
-            abort(400, {'message': 'Not a JSON'})
+            abort(400, 'Not a JSON')
 
         review = storage.get('Review', review_id)
         for key, value in request.get_json().items():

@@ -16,9 +16,9 @@ def all_users():
         return jsonify([i.to_dict() for i in storage.all('User').values()])
     elif request.method == 'POST':
         if request.get_json() is None:
-            abort(400, {'message': 'Not a JSON'})
+            abort(400, 'Not a JSON')
         if "name" not in request.get_json().keys():
-            abort(400, {'message': 'Missing name'})
+            abort(400, 'Missing name')
         instance = User(**request.get_json())
         instance.save()
         return jsonify(instance.to_dict()), 201
@@ -46,7 +46,7 @@ def users_with_id(user_id):
         return jsonify({})
     elif request.method == 'PUT':
         if request.get_json() is None:
-            abort(400, {'message': 'Not a JSON'})
+            abort(400, 'Not a JSON')
 
         user = storage.get('User', user_id)
         for key, value in request.get_json().items():
